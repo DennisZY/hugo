@@ -36,7 +36,7 @@
     {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.Suffix .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 
     {{ if .Site.Params.googleAd }}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
