@@ -1,4 +1,4 @@
-baseURL = "http://www.hzycjy.top/"
+baseURL = "https://www.hzycjy.top/"
 languageCode = "zh-CN"
 title = "Dennis‘s Blog"
 theme = "maupassant"
