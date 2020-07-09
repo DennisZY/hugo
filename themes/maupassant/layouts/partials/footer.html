@@ -39,8 +39,6 @@
     })();
 </script>
 
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 {{- end -}}
 
 <!-- flowchart -->
@@ -71,7 +69,8 @@
     })();
 </script>
 {{- end -}}
-
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <!-- sequence必须要在flow加载之后，否则sequence渲染不成功，原因待分析 -->
 <!-- js-sequence-diagrams -->
 {{- if and (or .Params.sequenceDiagrams.enable (and .Site.Params.sequenceDiagrams.enable (ne .Params.sequenceDiagrams.enable false))) (or .IsPage .IsHome) -}}
