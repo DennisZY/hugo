@@ -17,6 +17,7 @@ PaginatePath = "page"
 
     customCSS = ["style.extra.css"]
     customJS = ["app.extra.js"]
+    search_provider = "google"
 
 [[params.links]]
   title = "YYcoder的博客"
