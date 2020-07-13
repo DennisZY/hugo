@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}zh-CN{{end}}">
+
 <head>
 
     <meta charset="utf-8">
@@ -19,18 +20,18 @@
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
     <meta property="og:type" content="article">
-        {{ with .Params.date }}
+    {{ with .Params.date }}
     <meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05+08:00" }}">
-        {{ end }}
-        {{ with .Params.lastmod }}
+    {{ end }}
+    {{ with .Params.lastmod }}
     <meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05+08:00" }}">
-        {{ end }}
+    {{ end }}
     <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Title }}{{ end }}">
-        {{ if .Params.author -}}
+    {{ if .Params.author -}}
     <meta name="author" content="{{ .Params.author }}">
-        {{ else }}
+    {{ else }}
     <meta name="author" content="{{ .Site.Author.name }}">
-        {{- end }}
+    {{- end }}
     {{- end }}
     <meta property="og:url" content="{{ .Permalink }}">
 
@@ -49,3 +50,53 @@
     <link rel="stylesheet" href="{{ "css/" | relURL }}{{ . }}">
     {{ end -}}
 </head>
+<script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer=""></script>
+<script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                source: {
+                    '[tex]/amsCd': '[tex]/amscd',
+                    '[tex]/AMScd': '[tex]/amscd'
+                }
+            },
+            tex: {
+                inlineMath: { '[+]': [['$', '$']] },
+                tags: 'ams'
+            },
+            options: {
+                renderActions: {
+                    findScript: [10, doc => {
+                        document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                            const display = !!node.type.match(/; *mode=display/);
+                            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                            const text = document.createTextNode('');
+                            node.parentNode.replaceChild(text, node);
+                            math.start = { node: text, delim: '', n: 0 };
+                            math.end = { node: text, delim: '', n: 0 };
+                            doc.math.push(math);
+                        });
+                    }, '', false],
+                    insertedScript: [200, () => {
+                        document.querySelectorAll('mjx-container').forEach(node => {
+                            let target = node.parentNode;
+                            if (target.nodeName.toLowerCase() === 'li') {
+                                target.parentNode.classList.add('has-jax');
+                            }
+                        });
+                    }, '', false]
+                }
+            }
+        };
+        (function () {
+            var script = document.createElement('script');
+            script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.startup.document.state(0);
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>

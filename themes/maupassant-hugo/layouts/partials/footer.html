@@ -7,11 +7,9 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="{{ "js/app.js" | relURL}}" defer></script>
+<!-- <script type="text/javascript" src="{{ "js/app.js" | relURL}}" defer></script> -->
 
 {{/** Extra custom Javascript files **/}}
 {{- range .Site.Params.customJS }}
 <script type="text/javascript" src="{{ "js/" | relURL}}{{ . }}" defer></script>
 {{ end -}}
-
-<script type="text/javascript" src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
